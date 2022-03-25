@@ -48,7 +48,7 @@ module.exports = class ShwarmaOrder extends Order {
           aReturn.push("What size would you like? Large or small");
         } else {
           this.stateCur = OrderState.ITEM;
-          aReturn.push("Please select from menu! shawarma or Noodles");
+          aReturn.push("Please select from menu! Shawarma or Noodles");
         }
         break;
       case OrderState.SIZE:
@@ -60,7 +60,7 @@ module.exports = class ShwarmaOrder extends Order {
           if (count == 0) this.sSize = sInput;
           else this.sSecondSize = sInput;
           if (sInput.toLowerCase() == "large") total = total + 2;
-          aReturn.push("What toppings would you like? Beef or chicken.");
+          aReturn.push("What toppings would you like? Beef or Chicken.");
         } else {
           this.stateCur = OrderState.SIZE;
           aReturn.push("Please select large or small!");
@@ -78,7 +78,7 @@ module.exports = class ShwarmaOrder extends Order {
           aReturn.push("Would you like to make another order?");
         } else {
           this.stateCur = OrderState.TOPPINGS;
-          aReturn.push("Please select beef or chicken!");
+          aReturn.push("Please select Beef or Chicken!");
         }
         break;
       case OrderState.SECOND:
@@ -87,12 +87,12 @@ module.exports = class ShwarmaOrder extends Order {
           this.sSecond = sInput;
           total = total + 3;
           aReturn.push(
-            "Would you like dessert with that? If yes, cake or icecream?"
+            "Would you like dessert with that? If yes, Cake or Icecream?"
           );
         } else {
           this.stateCur = OrderState.ITEM;
           count = 1;
-          aReturn.push("What would you like to order? shawarma or Noodles");
+          aReturn.push("What would you like to order? Shawarma or Noodles");
         }
         break;
       case OrderState.DESSERT:
@@ -107,7 +107,7 @@ module.exports = class ShwarmaOrder extends Order {
         } else {
           this.stateCur = OrderState.DESSERT;
           aReturn.push(
-            "Please select cake or icecream if you need dessert! else, no"
+            "Please select Cake or Icecream if you need dessert! else, no"
           );
         }
         break;
