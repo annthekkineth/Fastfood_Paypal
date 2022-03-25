@@ -113,6 +113,7 @@ module.exports = class ShwarmaOrder extends Order {
         break;
       case OrderState.DRINKS:
         this.stateCur = OrderState.PAYMENT;
+        // if (sInput.toLowerCase() == "no") {}
         if (sInput.toLowerCase() == "no" || sInput.toLowerCase() == "fanta" || sInput.toLowerCase() == "coke") {
             this.sDrinks = sInput;
             aReturn.push("Thank-you for your order of");
@@ -152,6 +153,7 @@ module.exports = class ShwarmaOrder extends Order {
     return aReturn;
   }
   renderForm(sTitle = "-1", sAmount = "-1") {
+    // your client id should be kept private
     if (sTitle != "-1") {
       this.sItem = sTitle;
     }
