@@ -8,6 +8,7 @@ const OrderState = Object.freeze({
   TOPPINGS: Symbol("toppings"),
   DRINKS: Symbol("drinks"),
   SECOND: Symbol("second"),
+  THANKS: Symbol("thanks")
 });
 
 var total = 0;
@@ -135,12 +136,15 @@ module.exports = class ShwarmaOrder extends Order {
             aReturn.push(`Please pay for your order here`);
             aReturn.push(`${this.sUrl}/payment/${this.sNumber}/`);
           } else {
-            this.stateCur = OrderState.DRINKS;
+            this.stateCur = OrderState.THANKS;
             aReturn.push(
               "Please select fanta or coke if you need a drink! else, no"
             );
-          }
-        
+          }        
+        break;
+        case OrderState.THANKS:
+        this.stateCur = OrderState.DRINKS;        
+        aReturn.push(`Thank you for ordering with us!`);
         break;
       case OrderState.PAYMENT:
         this.isDone(true);
