@@ -31,24 +31,24 @@ module.exports = class ShwarmaOrder extends Order {
       case OrderState.WELCOMING:
         this.stateCur = OrderState.ITEM;
         aReturn.push("Welcome to Ann's Dinner.");
-        aReturn.push("What would you like to order? Burger or Noodles");
+        aReturn.push("What would you like to order? Shawarma or Noodles");
         total = 0;
         count = 0;
         break;
       case OrderState.ITEM:
         if (
-          sInput.toLowerCase() == "burger" ||
+          sInput.toLowerCase() == "shawarma" ||
           sInput.toLowerCase() == "noodles"
         ) {
           this.stateCur = OrderState.SIZE;
           if (count == 0) this.sItem = sInput;
           else this.sSecondItem = sInput;
-          if (sInput.toLowerCase() == "burger") total = total + 7;
+          if (sInput.toLowerCase() == "shawarma") total = total + 7;
           else total = total + 9;
           aReturn.push("What size would you like? Large or small");
         } else {
           this.stateCur = OrderState.ITEM;
-          aReturn.push("Please select from menu! Burger or Noodles");
+          aReturn.push("Please select from menu! Shawarma or Noodles");
         }
         break;
       case OrderState.SIZE:
@@ -60,7 +60,7 @@ module.exports = class ShwarmaOrder extends Order {
           if (count == 0) this.sSize = sInput;
           else this.sSecondSize = sInput;
           if (sInput.toLowerCase() == "large") total = total + 2;
-          aReturn.push("What toppings would you like? Beef or cheese.");
+          aReturn.push("What toppings would you like? Beef or Chicken.");
         } else {
           this.stateCur = OrderState.SIZE;
           aReturn.push("Please select large or small!");
@@ -69,7 +69,7 @@ module.exports = class ShwarmaOrder extends Order {
       case OrderState.TOPPINGS:
         if (
           sInput.toLowerCase() == "beef" ||
-          sInput.toLowerCase() == "cheese"
+          sInput.toLowerCase() == "chicken"
         ) {
           this.stateCur = OrderState.SECOND;
           if (count == 0) this.sToppings = sInput;
@@ -78,7 +78,7 @@ module.exports = class ShwarmaOrder extends Order {
           aReturn.push("Would you like to make another order?");
         } else {
           this.stateCur = OrderState.TOPPINGS;
-          aReturn.push("Please select beef or cheese!");
+          aReturn.push("Please select Beef or Chicken!");
         }
         break;
       case OrderState.SECOND:
@@ -87,12 +87,12 @@ module.exports = class ShwarmaOrder extends Order {
           this.sSecond = sInput;
           total = total + 3;
           aReturn.push(
-            "Would you like dessert with that? If yes, cake or pie?"
+            "Would you like dessert with that? If yes, Cake or Icecream?"
           );
         } else {
           this.stateCur = OrderState.ITEM;
           count = 1;
-          aReturn.push("What would you like to order? Burger or Noodles");
+          aReturn.push("What would you like to order? Shawarma or Noodles");
         }
         break;
       case OrderState.DESSERT:
@@ -100,14 +100,14 @@ module.exports = class ShwarmaOrder extends Order {
           this.stateCur = OrderState.DRINKS;
           aReturn.push("Would you like drinks with that? Fanta or Coke");
         }
-        else if (sInput.toLowerCase() == "cake" || sInput.toLowerCase() == "pie") {
+        else if (sInput.toLowerCase() == "cake" || sInput.toLowerCase() == "icecream") {
           this.sDesserts = sInput;
           this.stateCur = OrderState.DRINKS;
           aReturn.push("Would you like drinks with that? Fanta or Coke");
         } else {
           this.stateCur = OrderState.DESSERT;
           aReturn.push(
-            "Please select cake or pie if you need dessert! else, no"
+            "Please select Cake or Icecream if you need dessert! else, no"
           );
         }
         break;
